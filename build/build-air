@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$FLEX_SDK/bin/mxmlc -incremental +configname=air -compiler.source-path=src/ $*
