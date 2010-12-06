@@ -10,6 +10,28 @@ package yzzy.projection {
         public var size:Point = new Point( 128, 128 );
         public var outline:Rectangle = new Rectangle( 0, 0, NaN, NaN );
 
+        public function Aperture() {
+            update();
+        }
+
+        public function get x():Number {
+            return center.x;
+        }
+
+        public function set x( x_:Number ):void {
+            center.x = x;
+            update();
+        }
+
+        public function get y():Number {
+            return center.y;
+        }
+
+        public function set y( y_:Number ):void {
+            center.y = y;
+            update();
+        }
+
         public function get width():Number {
             return size.x;
         }
@@ -18,8 +40,28 @@ package yzzy.projection {
             return size.y;
         }
 
-        public function Aperture() {
-            update();
+        public function get topLeft():Point {
+            return outline.topLeft;
+        }
+
+        public function get bottomRight():Point {
+            return outline.bottomRight;
+        }
+
+        public function get top():Number {
+            return outline.top;
+        }
+
+        public function get bottom():Number {
+            return outline.bottom;
+        }
+
+        public function get left():Number {
+            return outline.left;
+        }
+
+        public function get right():Number {
+            return outline.right;
         }
 
         public function translate( x_:Number, y_:Number ):void {
@@ -37,6 +79,8 @@ package yzzy.projection {
         public function update():void {
             outline.x = center.x - ( size.x / 2 );
             outline.y = center.y - ( size.y / 2 );
+            outline.width = size.x;
+            outline.height = size.y;
         }
     }
 }

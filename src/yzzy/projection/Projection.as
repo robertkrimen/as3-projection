@@ -6,8 +6,7 @@ package yzzy.projection {
 
     public class Projection {
 
-        public var aperture:Point = new Point( 0, 0 );
-        public var screen:Rectangle = new Rectangle( 0, 0, NaN, NaN );
+        public var aperture:Aperture = new Aperture();
         public var _image:Rectangle = new Rectangle( 0, 0, NaN, NaN );
         public var unscaledImageWidth:Number = NaN;
         public var unscaledImageHeight:Number = NaN;
@@ -17,13 +16,12 @@ package yzzy.projection {
 
         public function Projection ( options:Object ) {
 
-            screen.width = options.screen[0];
-            screen.height = options.screen[1];
+            aperture.resize( options.screen[0], options.screen[1] );
 
             _image.width = unscaledImageWidth = options.image[0];
             _image.height = unscaledImageHeight = options.image[1];
 
-            trace( screen.width, screen.height, unscaledImageWidth, unscaledImageHeight );
+            //trace( screen.width, screen.height, unscaledImageWidth, unscaledImageHeight );
 
             dirty = true;
         }
@@ -35,8 +33,7 @@ package yzzy.projection {
 
         public function translate ( x_:Number, y_:Number ):void {
 
-            aperture.x += x_;
-            aperture.y += y_;
+            aperture.translate( x_, y_ );
 
             dirty = true;
         }
@@ -50,7 +47,7 @@ package yzzy.projection {
             _image.width = unscaledImageWidth * scale_;
             _image.height = unscaledImageHeight * scale_;
 
-            var global0:Point = aperture.clone();
+            var global0:Point = aperture.center.clone();
             var local:Point = new Point(
                 global0.x / _scale,
                 global0.y / _scale
@@ -82,11 +79,12 @@ package yzzy.projection {
             if ( ! dirty ) return;
 
             var halfImage:Point = new Point( _image.width / 2, _image.height / 2 );
-            var halfScreen:Point = new Point( screen.width / 2, screen.height / 2 );
+            var halfAperture:Point = new Point( aperture.width / 2, aperture.height / 2 );
             var offset:Point = new Point( 0, 0 );
+            var screen:Rectangle = aperture.outline.clone();
 
-            offset.x = ( aperture.x - halfScreen.x );
-            offset.y = ( aperture.y - halfScreen.y );
+            offset.x = ( aperture.x - halfAperture.x );
+            offset.y = ( aperture.y - halfAperture.y );
 
             trace( 'offset', offset.x, offset.y );
             _image.x = -1 * offset.x;
@@ -104,7 +102,7 @@ package yzzy.projection {
                 }
             }
             else {
-                _image.x = halfScreen.x - halfImage.x;
+                _image.x = halfAperture.x - halfImage.x;
             }
             offset.x = -1 * _image.x;
 
@@ -117,12 +115,12 @@ package yzzy.projection {
                 }
             }
             else {
-                _image.y = halfScreen.y - halfImage.y;
+                _image.y = halfAperture.y - halfImage.y;
             }
             offset.y = -1 * _image.y;
 
-            aperture.x = ( offset.x +halfScreen.x );
-            aperture.y = ( offset.y +halfScreen.y );
+            aperture.x = ( offset.x +halfAperture.x );
+            aperture.y = ( offset.y +halfAperture.y );
             
             trace( 'aperture', aperture.x, aperture.y, 'scale', _scale );
 

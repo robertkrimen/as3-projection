@@ -121,29 +121,29 @@ public function render():void {
         false, // tile
         true // smooth bitmap
     );
-    graphics.drawRect( 0, 0, projection.screen.width, projection.screen.height );
+    graphics.drawRect( 0, 0, projection.aperture.width, projection.aperture.height );
     graphics.endFill();
 
     var color:Number = 0xaaaaaa;
 
-    if ( projection.image.left > projection.screen.left ) {
+    if ( projection.image.left > projection.aperture.left ) {
         graphics.beginFill( color );
-        graphics.drawRect( 0, 0, projection.image.left, projection.screen.height );
+        graphics.drawRect( 0, 0, projection.image.left, projection.aperture.height );
     }
 
-    if ( projection.image.right < projection.screen.right ) {
+    if ( projection.image.right < projection.aperture.right ) {
         graphics.beginFill( color );
-        graphics.drawRect( projection.image.right, 0, projection.screen.width - projection.image.right, projection.screen.height );
+        graphics.drawRect( projection.image.right, 0, projection.aperture.width - projection.image.right, projection.aperture.height );
     }
 
-    if ( projection.image.top > projection.screen.top ) {
+    if ( projection.image.top > projection.aperture.top ) {
         graphics.beginFill( color );
-        graphics.drawRect( 0, 0, projection.screen.width, projection.image.top );
+        graphics.drawRect( 0, 0, projection.aperture.width, projection.image.top );
     }
 
-    if ( projection.image.bottom < projection.screen.bottom ) {
+    if ( projection.image.bottom < projection.aperture.bottom ) {
         graphics.beginFill( color );
-        graphics.drawRect( 0, projection.image.bottom, projection.screen.width, projection.screen.height -  projection.image.bottom );
+        graphics.drawRect( 0, projection.image.bottom, projection.aperture.width, projection.aperture.height -  projection.image.bottom );
     }
 }
 
