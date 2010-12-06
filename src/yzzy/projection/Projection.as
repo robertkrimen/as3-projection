@@ -6,7 +6,7 @@ package yzzy.projection {
 
     public class Projection {
 
-        public var aperture:Aperture = new Aperture();
+        public var _aperture:Aperture = new Aperture();
         public var _surface:Rectangle = new Rectangle( 0, 0, NaN, NaN );
         public var unscaledSurfaceWidth:Number = NaN;
         public var unscaledSurfaceHeight:Number = NaN;
@@ -17,9 +17,9 @@ package yzzy.projection {
 
         public function Projection( width_:Number, height_:Number, surfaceWidth_:Number, surfaceHeight_:Number ){
 
-            aperture.resize( width_, height_ );
-            this._view.width = width_;
-            this._view.height = height_;
+            _aperture.resize( width_, height_ );
+            _view.width = width_;
+            _view.height = height_;
 
             _surface.width = unscaledSurfaceWidth = surfaceWidth_;
             _surface.height = unscaledSurfaceHeight = surfaceHeight_;
@@ -27,41 +27,37 @@ package yzzy.projection {
             dirty = true;
         }
 
-
         public function get width():Number {
-            return this.aperture.width;
+            return _aperture.width;
         }
 
         public function get height():Number {
-            return this.aperture.height;
+            return _aperture.height;
         }
 
         public function get view():Rectangle {
             return this._view;
         }
 
-        public function get surface ():Rectangle {
+        public function get surface():Rectangle {
             update();
             return _surface;
         }
 
         public function translate ( x_:Number, y_:Number ):void {
-
-            aperture.translate( x_, y_ );
-
+            _aperture.translate( x_, y_ );
             dirty = true;
         }
 
-        public function get scale ():Number {
+        public function get scale():Number {
             return _scale;
         }
 
-        public function set scale ( scale_:Number ):void {
-
+        public function set scale( scale_:Number ):void {
             _surface.width = unscaledSurfaceWidth * scale_;
             _surface.height = unscaledSurfaceHeight * scale_;
 
-            var global0:Point = aperture.center.clone();
+            var global0:Point = _aperture.center.clone();
             var local:Point = new Point(
                 global0.x / _scale,
                 global0.y / _scale
@@ -78,8 +74,8 @@ package yzzy.projection {
         }
 
         public function center ():void {
-            aperture.x = 0;
-            aperture.y = 0;
+            _aperture.x = 0;
+            _aperture.y = 0;
             translate( +1 * _surface.width / 2, +1 * _surface.height / 2 );
         }
 
@@ -93,12 +89,12 @@ package yzzy.projection {
             if ( ! dirty ) return;
 
             var halfSurface:Point = new Point( _surface.width / 2, _surface.height / 2 );
-            var halfAperture:Point = new Point( aperture.width / 2, aperture.height / 2 );
+            var halfAperture:Point = new Point( _aperture.width / 2, _aperture.height / 2 );
             var offset:Point = new Point( 0, 0 );
-            var screen:Rectangle = aperture.outline.clone();
+            var screen:Rectangle = _aperture.outline.clone();
 
-            offset.x = ( aperture.x - halfAperture.x );
-            offset.y = ( aperture.y - halfAperture.y );
+            offset.x = ( _aperture.x - halfAperture.x );
+            offset.y = ( _aperture.y - halfAperture.y );
 
             trace( 'offset', offset.x, offset.y );
             _surface.x = -1 * offset.x;
@@ -133,8 +129,8 @@ package yzzy.projection {
             }
             offset.y = -1 * _surface.y;
 
-            aperture.x = ( offset.x +halfAperture.x );
-            aperture.y = ( offset.y +halfAperture.y );
+            _aperture.x = ( offset.x +halfAperture.x );
+            _aperture.y = ( offset.y +halfAperture.y );
             
             trace( 'aperture', aperture.x, aperture.y, 'scale', _scale );
 
