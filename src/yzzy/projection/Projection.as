@@ -54,10 +54,10 @@ package yzzy.projection {
         }
 
         public function set scale( scale_:Number ):void {
+            _aperture.update();
             _surface.width = unscaledSurfaceWidth * scale_;
             _surface.height = unscaledSurfaceHeight * scale_;
-
-            var global0:Point = _aperture.center.clone();
+            var global0:Point = _aperture.point.clone();
             var local:Point = new Point(
                 global0.x / _scale,
                 global0.y / _scale
@@ -74,8 +74,7 @@ package yzzy.projection {
         }
 
         public function center():void {
-            _aperture.x = 0;
-            _aperture.y = 0;
+            _aperture.setTopLeft( 0, 0 );
             translate( + 1 * _surface.width / 2, + 1 * _surface.height / 2 );
         }
 
@@ -84,9 +83,12 @@ package yzzy.projection {
             return _transform.clone();
         }
 
-        public function update():void {
+        //private function _clamp_translation( innerLength:Number, outerLength:Number, outerLeft:Number, outerRight:Number ):Number {
+        //}
 
+        public function update():void {
             if ( ! _dirty ) return;
+            _aperture.update();
 
             var offset:Point = _aperture.topLeft.clone();
 

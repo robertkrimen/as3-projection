@@ -6,86 +6,86 @@ package yzzy.projection {
 
     public class Aperture {
 
-        public var center:Point = new Point( 0, 0 );
-        public var size:Point = new Point( 128, 128 );
-        public var outline:Rectangle = new Rectangle( 0, 0, NaN, NaN );
+        public var point:Point = new Point( 0, 0 );
+        public var rectangle:Rectangle = new Rectangle( 0, 0, NaN, NaN );
+        public var dirty:Boolean = true;
 
         public function Aperture() {
-            update();
         }
 
         public function get x():Number {
-            return center.x;
+            return point.x;
         }
 
         public function set x( x_:Number ):void {
-            center.x = x;
-            update();
+            point.x = x;
+            dirty = true;
         }
 
         public function get y():Number {
-            return center.y;
+            return point.y;
         }
 
         public function set y( y_:Number ):void {
-            center.y = y;
-            update();
+            point.y = y;
+            dirty = true;
         }
 
         public function get width():Number {
-            return size.x;
+            return rectangle.width;
         }
 
         public function get height():Number {
-            return size.y;
+            return rectangle.height;
         }
 
         public function get topLeft():Point {
-            return outline.topLeft;
+            return rectangle.topLeft;
         }
 
         public function setTopLeft( x_:Number, y_:Number ):void {
-            x = x_ + size.x / 2;
-            y = y_ + size.y / 2;
+            x = x_ + rectangle.width / 2;
+            y = y_ + rectangle.height / 2;
+            dirty = true;
         }
 
         public function get bottomRight():Point {
-            return outline.bottomRight;
+            return rectangle.bottomRight;
         }
 
         public function get top():Number {
-            return outline.top;
+            return rectangle.top;
         }
 
         public function get bottom():Number {
-            return outline.bottom;
+            return rectangle.bottom;
         }
 
         public function get left():Number {
-            return outline.left;
+            return rectangle.left;
         }
 
         public function get right():Number {
-            return outline.right;
+            return rectangle.right;
         }
 
         public function translate( x_:Number, y_:Number ):void {
-            center.x += x_;
-            center.y += y_;
-            update();
+            point.x += x_;
+            point.y += y_;
+            dirty = true;
         }
 
         public function resize( width_:Number, height_:Number ):void {
-            size.x = width_;
-            size.y = height_;
-            update();
+            rectangle.width = width_;
+            rectangle.height = height_;
+            dirty = true;
         }
 
         public function update():void {
-            outline.x = center.x - ( size.x / 2 );
-            outline.y = center.y - ( size.y / 2 );
-            outline.width = size.x;
-            outline.height = size.y;
+            if ( ! dirty ) return;
+            rectangle.x = point.x - ( rectangle.width / 2 );
+            rectangle.y = point.y - ( rectangle.height / 2 );
+            dirty = false;
         }
     }
 }
