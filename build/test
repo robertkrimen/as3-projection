@@ -1,0 +1,3 @@
+#!/bin/sh
+
+prove --ext .as --exec ./build/prove4air t/
