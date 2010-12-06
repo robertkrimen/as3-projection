@@ -4,7 +4,7 @@ package yzzy.projection {
     import flash.geom.Point;
     import flash.geom.Rectangle;
 
-    public class Projection {
+    public class View {
 
         public var unscaledSurfaceWidth:Number = NaN;
         public var unscaledSurfaceHeight:Number = NaN;
@@ -15,7 +15,7 @@ package yzzy.projection {
         public var _transform:Matrix = new Matrix();
         public var _view:Rectangle = new Rectangle( 0, 0, NaN, NaN );
 
-        public function Projection( width_:Number, height_:Number, surfaceWidth_:Number, surfaceHeight_:Number ){
+        public function View( width_:Number, height_:Number, surfaceWidth_:Number, surfaceHeight_:Number ){
 
             _aperture.resize( width_, height_ );
             _view.width = width_;
@@ -35,7 +35,7 @@ package yzzy.projection {
             return _aperture.height;
         }
 
-        public function get view():Rectangle {
+        public function get rectangle():Rectangle {
             return this._view;
         }
 

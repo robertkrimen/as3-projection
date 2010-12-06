@@ -1,4 +1,4 @@
-import yzzy.projection.Projection;
+import yzzy.projection.View;
 
 import mx.core.FlexGlobals;
 import flash.display.Sprite;
@@ -44,7 +44,7 @@ private var $mouseDelta:Point = new Point( 0, 0 );
 
 private var $mouseOffStage:Boolean = false;
 
-private var projection:Projection;
+private var view:View;
 
 private function onMouseMove( $event:MouseEvent ):void {
 
@@ -96,24 +96,24 @@ private function onMouseUp( $event:MouseEvent ):void {
 
 private function translate( $x:Number, $y:Number ):void {
 
-    projection.translate( $x, $y );
+    view.translate( $x, $y );
     invalidateDisplayList();
 }
 
 private function scale( $newScale:Number ):void {
 
-    projection.scale = $newScale;
+    view.scale = $newScale;
     invalidateDisplayList();
 
 }
 
 public function render():void {
 
-    if ( ! projection ) {
+    if ( ! view ) {
         return;
     }
 
-    var transform:Matrix = projection.transformationMatrix();
+    var transform:Matrix = view.transformationMatrix();
 
     var graphics:Graphics = viewport.graphics;
     graphics.clear()
@@ -121,29 +121,29 @@ public function render():void {
         false, // tile
         true // smooth bitmap
     );
-    graphics.drawRect( 0, 0, projection.width, projection.height );
+    graphics.drawRect( 0, 0, view.width, view.height );
     graphics.endFill();
 
     var color:Number = 0xaaaaaa;
 
-    if ( projection.surface.left > projection.view.left ) {
+    if ( view.surface.left > view.rectangle.left ) {
         graphics.beginFill( color );
-        graphics.drawRect( projection.view.left, 0, projection.surface.left, projection.height );
+        graphics.drawRect( view.rectangle.left, 0, view.surface.left, view.height );
     }
 
-    if ( projection.surface.right < projection.view.right ) {
+    if ( view.surface.right < view.rectangle.right ) {
         graphics.beginFill( color );
-        graphics.drawRect( projection.surface.right, 0, projection.width - projection.surface.right, projection.height );
+        graphics.drawRect( view.surface.right, 0, view.width - view.surface.right, view.height );
     }
 
-    if ( projection.surface.top > projection.view.top ) {
+    if ( view.surface.top > view.rectangle.top ) {
         graphics.beginFill( color );
-        graphics.drawRect( projection.view.top, 0, projection.width, projection.surface.top );
+        graphics.drawRect( view.rectangle.top, 0, view.width, view.surface.top );
     }
 
-    if ( projection.surface.bottom < projection.view.bottom ) {
+    if ( view.surface.bottom < view.rectangle.bottom ) {
         graphics.beginFill( color );
-        graphics.drawRect( 0, projection.surface.bottom, projection.width, projection.height - projection.surface.bottom );
+        graphics.drawRect( 0, view.surface.bottom, view.width, view.height - view.surface.bottom );
     }
 }
 
@@ -154,12 +154,12 @@ override protected function updateDisplayList( unscaledWidth:Number, unscaledHei
 
 public function creationComplete():void {
 
-    projection = new Projection(
+    view = new View(
         viewport.width, viewport.height,
         $bitmapData.width, $bitmapData.height
     );
 
-    projection.center();
+    view.center();
 
     FlexGlobals.topLevelApplication.addEventListener( KeyboardEvent.KEY_DOWN, function( $event:KeyboardEvent ):void {
 
