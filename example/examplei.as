@@ -131,7 +131,7 @@ public function render():void {
         graphics.drawRect( projection.view.left, 0, projection.surface.left, projection.aperture.height );
     }
 
-    if ( projection.surface.right < projection.aperture.width ) {
+    if ( projection.surface.right < projection.view.right ) {
         graphics.beginFill( color );
         graphics.drawRect( projection.surface.right, 0, projection.aperture.width - projection.surface.right, projection.aperture.height );
     }
@@ -141,9 +141,9 @@ public function render():void {
         graphics.drawRect( projection.view.top, 0, projection.aperture.width, projection.surface.top );
     }
 
-    if ( projection.surface.bottom < projection.aperture.height ) {
+    if ( projection.surface.bottom < projection.view.bottom ) {
         graphics.beginFill( color );
-        graphics.drawRect( 0, projection.surface.bottom, projection.aperture.width, projection.aperture.height -  projection.surface.bottom );
+        graphics.drawRect( 0, projection.surface.bottom, projection.aperture.width, projection.aperture.height - projection.surface.bottom );
     }
 }
 

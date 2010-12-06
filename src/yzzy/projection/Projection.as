@@ -13,13 +13,13 @@ package yzzy.projection {
         public var _scale:Number = 1;
         public var dirty:Boolean = true;
         public var _transform:Matrix = new Matrix();
-        public var view = new Rectangle( 0, 0, NaN, NaN );
+        public var _view:Rectangle = new Rectangle( 0, 0, NaN, NaN );
 
-        public function Projection( width_:Number, height_:Number, surfaceWidth_:Number, surfaceHeight:Number ){
+        public function Projection( width_:Number, height_:Number, surfaceWidth_:Number, surfaceHeight_:Number ){
 
             aperture.resize( width_, height_ );
-            this.view.width = width_;
-            this.view.height = height_;
+            this._view.width = width_;
+            this._view.height = height_;
 
             _surface.width = unscaledSurfaceWidth = surfaceWidth_;
             _surface.height = unscaledSurfaceHeight = surfaceHeight_;
@@ -37,7 +37,7 @@ package yzzy.projection {
         }
 
         public function get view():Rectangle {
-            return this.view;
+            return this._view;
         }
 
         public function get surface ():Rectangle {
