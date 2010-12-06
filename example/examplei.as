@@ -126,24 +126,24 @@ public function render():void {
 
     var color:Number = 0xaaaaaa;
 
-    if ( projection.image.left > projection.aperture.left ) {
+    if ( projection.surface.left > projection.view.left ) {
         graphics.beginFill( color );
-        graphics.drawRect( 0, 0, projection.image.left, projection.aperture.height );
+        graphics.drawRect( projection.view.left, 0, projection.surface.left, projection.aperture.height );
     }
 
-    if ( projection.image.right < projection.aperture.right ) {
+    if ( projection.surface.right < projection.aperture.width ) {
         graphics.beginFill( color );
-        graphics.drawRect( projection.image.right, 0, projection.aperture.width - projection.image.right, projection.aperture.height );
+        graphics.drawRect( projection.surface.right, 0, projection.aperture.width - projection.surface.right, projection.aperture.height );
     }
 
-    if ( projection.image.top > projection.aperture.top ) {
+    if ( projection.surface.top > projection.view.top ) {
         graphics.beginFill( color );
-        graphics.drawRect( 0, 0, projection.aperture.width, projection.image.top );
+        graphics.drawRect( projection.view.top, 0, projection.aperture.width, projection.surface.top );
     }
 
-    if ( projection.image.bottom < projection.aperture.bottom ) {
+    if ( projection.surface.bottom < projection.aperture.height ) {
         graphics.beginFill( color );
-        graphics.drawRect( 0, projection.image.bottom, projection.aperture.width, projection.aperture.height -  projection.image.bottom );
+        graphics.drawRect( 0, projection.surface.bottom, projection.aperture.width, projection.aperture.height -  projection.surface.bottom );
     }
 }
 
@@ -154,10 +154,10 @@ override protected function updateDisplayList( unscaledWidth:Number, unscaledHei
 
 public function creationComplete():void {
 
-    projection = new Projection({
-        screen: [ viewport.width, viewport.height ],
-        image: [ $bitmapData.width, $bitmapData.height ]
-    });
+    projection = new Projection(
+        viewport.width, viewport.height,
+        $bitmapData.width, $bitmapData.height
+    );
 
     projection.center();
 
