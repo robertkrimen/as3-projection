@@ -44,6 +44,11 @@ package yzzy.projection {
             return outline.topLeft;
         }
 
+        public function setTopLeft( x_:Number, y_:Number ):void {
+            x = x_ + size.x / 2;
+            y = y_ + size.y / 2;
+        }
+
         public function get bottomRight():Point {
             return outline.bottomRight;
         }
