@@ -84,7 +84,6 @@ package yzzy.projection {
             var halfImage:Point = new Point( _image.width / 2, _image.height / 2 );
             var halfScreen:Point = new Point( screen.width / 2, screen.height / 2 );
             var offset:Point = new Point( 0, 0 );
-            var offsetCenter:Point = new Point( 0, 0 );
 
             offset.x = ( aperture.x - halfScreen.x );
             offset.y = ( aperture.y - halfScreen.y );

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+export RUN_AIR="build/run-air"
+export BUILD_AIR="build/build-air"
+
+exec prove4air $*

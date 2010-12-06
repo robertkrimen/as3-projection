@@ -10,7 +10,15 @@ package yzzy.projection {
         public var size:Point = new Point( 128, 128 );
         public var outline:Rectangle = new Rectangle( 0, 0, NaN, NaN );
 
-        public Aperture {
+        public function get width():Number {
+            return size.x;
+        }
+
+        public function get height():Number {
+            return size.y;
+        }
+
+        public function Aperture() {
             update();
         }
 
