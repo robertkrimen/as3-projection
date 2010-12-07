@@ -164,8 +164,6 @@ package yzzy.projection {
                 context.width = surface.left;
                 context.height = height;
                 filler.call( context );
-                //graphics.beginFill( color );
-                //graphics.drawRect( view.left, 0, view.surface.left, view.height );
             }
 
             if ( surface.right < right ) {
@@ -174,8 +172,6 @@ package yzzy.projection {
                 context.width = width - surface.right
                 context.height = height;
                 filler.call( context );
-                //graphics.beginFill( color );
-                //graphics.drawRect( view.surface.right, 0, view.width - view.surface.right, view.height );
             }
 
             if ( surface.top > top ) {
@@ -184,8 +180,6 @@ package yzzy.projection {
                 context.width = width;
                 context.height = surface.top;
                 filler.call( context );
-                //graphics.beginFill( color );
-                //graphics.drawRect( view.top, 0, view.width, view.surface.top );
             }
 
             if ( surface.bottom < bottom ) {
@@ -194,8 +188,6 @@ package yzzy.projection {
                 context.width = width;
                 context.height = height - surface.bottom;
                 filler.call( context );
-                //graphics.beginFill( color );
-                //graphics.drawRect( 0, view.surface.bottom, view.width, view.height - view.surface.bottom );
             }
         }
     }
