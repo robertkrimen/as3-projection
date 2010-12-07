@@ -152,7 +152,7 @@ package yzzy.projection {
             _dirty = false;
         }
 
-        public function fill( filler:Function ):void {
+        public function renderBorder( filler:Function ):void {
 
             var context:Object = {
                 view: this
