@@ -1,31 +1,5 @@
 import yzzy.projection.View;
-
 import mx.core.FlexGlobals;
-//import flash.display.Sprite;
-//import flash.display.BitmapData;
-//import flash.display.Bitmap;
-//import flash.system.fscommand;
-//import mx.core.Application;
-//import mx.core.UIComponent;
-//import mx.controls.Image;
-//import mx.controls.Button;
-//import mx.containers.HBox;
-//import flash.geom.Matrix;
-//import flash.geom.Point;
-//import flash.geom.Rectangle;
-//import flash.display.Sprite;
-//import flash.display.MovieClip;
-//import flash.geom.Point;
-//import flash.display.Shape;
-//import flash.display.Graphics;
-//import flash.events.*;
-//import flash.utils.Timer;
-//import spark.components.Application;
-//import mx.core.UIComponent;
-//import mx.events.FlexEvent;
-//import mx.collections.*;
-//import mx.core.UIComponent;
-//import mx.controls.Image;
 
 [Embed(source="image.jpg")]
 [Bindable]
@@ -146,15 +120,15 @@ public function creationComplete():void {
     FlexGlobals.topLevelApplication.addEventListener( KeyboardEvent.KEY_DOWN, function( $event:KeyboardEvent ):void {
 
         var $change:Boolean = true;
-        var $multiplier:Number = 1;
+        var $multiplier:Number = 1.5;
         if ( $event.shiftKey ) $multiplier *= 10;
         if ( $event.ctrlKey ) $multiplier *= 10;
 
         switch ( $event.keyCode )  {
-            case flash.ui.Keyboard.UP: offset.y -= 1 * $multiplier; $change = true; break;
-            case flash.ui.Keyboard.DOWN: offset.y += 1 * $multiplier; $change = true; break;
-            case flash.ui.Keyboard.LEFT: offset.x -= 1 * $multiplier; $change = true; break;
-            case flash.ui.Keyboard.RIGHT: offset.x += 1 * $multiplier; $change = true; break;
+            case flash.ui.Keyboard.UP:      offset.y -= 1 * $multiplier; $change = true; break;
+            case flash.ui.Keyboard.DOWN:    offset.y += 1 * $multiplier; $change = true; break;
+            case flash.ui.Keyboard.LEFT:    offset.x -= 1 * $multiplier; $change = true; break;
+            case flash.ui.Keyboard.RIGHT:   offset.x += 1 * $multiplier; $change = true; break;
         }
 
         if ( $change ) {
