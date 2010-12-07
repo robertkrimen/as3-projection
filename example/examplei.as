@@ -117,21 +117,21 @@ public function creationComplete():void {
 
     view.center();
 
-    FlexGlobals.topLevelApplication.addEventListener( KeyboardEvent.KEY_DOWN, function( $event:KeyboardEvent ):void {
+    FlexGlobals.topLevelApplication.addEventListener( KeyboardEvent.KEY_DOWN, function( event:KeyboardEvent ):void {
 
-        var $change:Boolean = true;
-        var $multiplier:Number = 1.5;
-        if ( $event.shiftKey ) $multiplier *= 10;
-        if ( $event.ctrlKey ) $multiplier *= 10;
+        var change:Boolean = true;
+        var multiplier:Number = 1.5;
+        if ( event.shiftKey ) multiplier *= 10;
+        if ( event.ctrlKey ) multiplier *= 10;
 
-        switch ( $event.keyCode )  {
-            case flash.ui.Keyboard.UP:      offset.y -= 1 * $multiplier; $change = true; break;
-            case flash.ui.Keyboard.DOWN:    offset.y += 1 * $multiplier; $change = true; break;
-            case flash.ui.Keyboard.LEFT:    offset.x -= 1 * $multiplier; $change = true; break;
-            case flash.ui.Keyboard.RIGHT:   offset.x += 1 * $multiplier; $change = true; break;
+        switch ( event.keyCode )  {
+            case flash.ui.Keyboard.UP:      offset.y -= 1 * multiplier; change = true; break;
+            case flash.ui.Keyboard.DOWN:    offset.y += 1 * multiplier; change = true; break;
+            case flash.ui.Keyboard.LEFT:    offset.x -= 1 * multiplier; change = true; break;
+            case flash.ui.Keyboard.RIGHT:   offset.x += 1 * multiplier; change = true; break;
         }
 
-        if ( $change ) {
+        if ( change ) {
             invalidateDisplayList();
         }
 
