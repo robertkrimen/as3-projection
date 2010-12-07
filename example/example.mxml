@@ -8,9 +8,7 @@
 
     <mx:VBox>
 
-        <mx:Canvas>
         <mx:Canvas id="viewport" width="1024" height="480" x="10" y="10"/>
-        </mx:Canvas>
 
         <s:HSlider id="hSlider" minimum="0.2" maximum="10" value="1" stepSize="0.2"
                     snapInterval="0.2" liveDragging="true" change="scale( hSlider.value );"/>

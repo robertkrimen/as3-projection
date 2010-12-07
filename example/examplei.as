@@ -5,13 +5,12 @@ import mx.core.FlexGlobals;
 [Bindable]
 public var imageSource:Class;
 
-private var bitmapData:BitmapData = new imageSource().bitmapData;
 private var offset:Point = new Point( 0, 0 );
-
 private var mousePosition:Point = new Point( NaN, NaN );
 private var mouseDelta:Point = new Point( 0, 0 );
 private var mouseOffStage:Boolean = false;
 
+private var bitmapData:BitmapData = new imageSource().bitmapData;
 private var view:View;
 
 private function onMouseMove( event:MouseEvent ):void {
