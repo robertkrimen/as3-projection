@@ -8,6 +8,7 @@ package yzzy.projection {
 
         public var unscaledSurfaceWidth:Number = NaN;
         public var unscaledSurfaceHeight:Number = NaN;
+
         public var _aperture:Aperture = new Aperture();
         public var _surface:Rectangle = new Rectangle( 0, 0, NaN, NaN );
         public var _scale:Number = 1;
@@ -149,6 +150,53 @@ package yzzy.projection {
             _transform.translate( -1 * ( offset.x ), -1 * ( offset.y ) );
 
             _dirty = false;
+        }
+
+        public function fill( filler:Function ):void {
+
+            var context:Object = {
+                view: this
+            };
+
+            if ( surface.left > left ) {
+                context.left = left;
+                context.top = 0;
+                context.width = surface.left;
+                context.height = height;
+                filler.call( context );
+                //graphics.beginFill( color );
+                //graphics.drawRect( view.left, 0, view.surface.left, view.height );
+            }
+
+            if ( surface.right < right ) {
+                context.left = surface.right;
+                context.top = 0;
+                context.width = width - surface.right
+                context.height = height;
+                filler.call( context );
+                //graphics.beginFill( color );
+                //graphics.drawRect( view.surface.right, 0, view.width - view.surface.right, view.height );
+            }
+
+            if ( surface.top > top ) {
+                context.left = top;
+                context.top = 0;
+                context.width = width;
+                context.height = surface.top;
+                filler.call( context );
+                //graphics.beginFill( color );
+                //graphics.drawRect( view.top, 0, view.width, view.surface.top );
+            }
+
+            if ( surface.bottom < bottom ) {
+                context.left = 0;
+                context.top = surface.bottom;
+                context.width = width;
+                context.height = height - surface.bottom;
+                filler.call( context );
+                //graphics.beginFill( color );
+                //graphics.drawRect( 0, view.surface.bottom, view.width, view.height - view.surface.bottom );
+            }
         }
     }
 }
