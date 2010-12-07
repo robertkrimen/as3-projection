@@ -126,22 +126,22 @@ public function render():void {
 
     var color:Number = 0xaaaaaa;
 
-    if ( view.surface.left > view.rectangle.left ) {
+    if ( view.surface.left > view.left ) {
         graphics.beginFill( color );
-        graphics.drawRect( view.rectangle.left, 0, view.surface.left, view.height );
+        graphics.drawRect( view.left, 0, view.surface.left, view.height );
     }
 
-    if ( view.surface.right < view.rectangle.right ) {
+    if ( view.surface.right < view.right ) {
         graphics.beginFill( color );
         graphics.drawRect( view.surface.right, 0, view.width - view.surface.right, view.height );
     }
 
-    if ( view.surface.top > view.rectangle.top ) {
+    if ( view.surface.top > view.top ) {
         graphics.beginFill( color );
-        graphics.drawRect( view.rectangle.top, 0, view.width, view.surface.top );
+        graphics.drawRect( view.top, 0, view.width, view.surface.top );
     }
 
-    if ( view.surface.bottom < view.rectangle.bottom ) {
+    if ( view.surface.bottom < view.bottom ) {
         graphics.beginFill( color );
         graphics.drawRect( 0, view.surface.bottom, view.width, view.height - view.surface.bottom );
     }

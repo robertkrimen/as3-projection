@@ -35,8 +35,24 @@ package yzzy.projection {
             return _aperture.height;
         }
 
+        public function get top():Number {
+            return rectangle.top;
+        }
+
+        public function get bottom():Number {
+            return rectangle.bottom;
+        }
+
+        public function get left():Number {
+            return rectangle.left;
+        }
+
+        public function get right():Number {
+            return rectangle.right;
+        }
+
         public function get rectangle():Rectangle {
-            return this._view;
+            return _view;
         }
 
         public function get surface():Rectangle {
@@ -55,21 +71,26 @@ package yzzy.projection {
 
         public function set scale( scale_:Number ):void {
             _aperture.update();
-            _surface.width = unscaledSurfaceWidth * scale_;
-            _surface.height = unscaledSurfaceHeight * scale_;
+
+            var scale0:Number = _scale;
+            var scale1:Number = scale_;
+
+            _surface.width = unscaledSurfaceWidth * scale1;
+            _surface.height = unscaledSurfaceHeight * scale1;
+
             var global0:Point = _aperture.point.clone();
             var local:Point = new Point(
-                global0.x / _scale,
-                global0.y / _scale
+                global0.x / scale0,
+                global0.y / scale0
             );
             var global1:Point = new Point(
-                local.x * scale_,
-                local.y * scale_
+                local.x * scale1,
+                local.y * scale1
             );
 
             translate( global1.x - global0.x, global1.y - global0.y );
-            _scale = scale_;
 
+            _scale = scale1;
             _dirty = true;
         }
 
