@@ -2,6 +2,8 @@
 import yzzy.projection.Aperture;
 // ---
 var aperture:Aperture = new Aperture();
+aperture.resize( 128, 128 );
+aperture.update();
 $.equal( aperture.width, 128 );
 $.equal( aperture.height, 128 );
 $.equal( aperture.x, 0 );
