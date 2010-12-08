@@ -67,7 +67,18 @@ private function translate( x:Number, y:Number ):void {
     invalidateDisplayList();
 }
 
-private function scale( scale:Number ):void {
+private function scale( value:Number ):void {
+
+    var factor:Number = value * 0.05;
+    var scale:Number = 1;
+    if ( value > 0 ) {
+        scale = 1 + factor;
+    }
+    else if ( value < 0 ) {
+        scale = 1 / ( 1 + -1 * factor );
+    }
+
+    trace( value, factor, scale );
 
     view.scale = scale;
     invalidateDisplayList();

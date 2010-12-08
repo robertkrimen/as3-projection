@@ -105,7 +105,7 @@ package yzzy.projection {
             return _transform.clone();
         }
 
-        //private function _clamp_translation( innerLength:Number, outerLength:Number, outerLeft:Number, outerRight:Number ):Number {
+        //private function _bound( viewExtent:Number, surfaceExtent:Number, surfaceMinimum:Number, surfaceMaximum:Number ):Number {
         //}
 
         public function update():void {
