@@ -1,0 +1,48 @@
+#!/bin/bash
+
+function _warn {
+    echo "$*" 1>/dev/stderr
+}
+
+function _die {
+    _warn "$*"
+    exit 64
+}
+
+function _have {
+    type -P "$1" &>/dev/null
+}
+
+function _link {
+    local from=$1
+    local into=$2
+    [[ $from && $into ]] || _die "*** _link( from, into ) '$from' '$into'"
+
+    if _have "lndir"
+    then
+        ( cd $into && lndir "../$from" )
+    elif _have "rsync"
+    then
+        rsync -Cav $from $into
+    else
+        _die "Unable to link without lndir or rsync"
+    fi
+}
+
+if [[ $1 == "clean" ]] 
+then
+    rm -rf ._src
+fi
+
+[[ -d ._src ]] || mkdir -p ._src
+
+for yzzy in yzzy-*
+do
+    if [ -d $yzzy/src/yzzy ]
+    then
+        echo "Linking \"$yzzy\" ..."
+        _link $yzzy/src/ ._src/
+
+    fi
+done
+
