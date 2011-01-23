@@ -1,0 +1,9 @@
+Building the example with the Flex SDK (commandline)
+
+Compile the .swf:
+
+    $FLEX_SDK/bin/mxmlc -debug -incremental -compiler.source-path=src/ example/example.mxml
+
+Open the .swf in Firefox (Mac OS X):
+
+    open -a Firefox example/example.swf

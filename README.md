@@ -30,7 +30,7 @@ Calculate a pan/zoom transformation matrix in Adobe Flex/Flash/Air
 
     // Cover up any "exposed" border as a result of zooming out
     view.renderBorder( function():void {
-        graphics.beginFill( 0xaaaaaa );
+        graphics.beginFill( 0xbbbbbb );
         graphics.drawRect( this.left, this.top, this.width, this.height );
     } );
 
@@ -39,9 +39,20 @@ Calculate a pan/zoom transformation matrix in Adobe Flex/Flash/Air
 
 yzzy.projection.View is a tool for calculating the transformation matrix (flash.geom.Matrix) when panning and zooming around an image
 
+## USAGE/INSTALL
+
+Compile your project with the following files:
+
+    yzzy
+    `-- projection
+            |-- Aperture.as
+            `-- View.as
+
 ## AUTHOR
 
 Robert Krimen &lt;robertkrimen@gmail.com&gt;
+
+http://github.com/robertkrimen/yzzy-projection
 
 ## COPYRIGHT AND LICENSE
 
