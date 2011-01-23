@@ -1,4 +1,6 @@
-# yzzy.projection.View - Calculate a pan/zoom transformation matrix
+# yzzy.projection.View
+
+Calculate a pan/zoom transformation matrix in Adobe Flex/Flash/Air
 
 ## SYNOPSIS
 
