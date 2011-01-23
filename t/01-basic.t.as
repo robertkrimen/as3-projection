@@ -1,4 +1,4 @@
-// !tap4air
+// !prove4air
 import yzzy.projection.Aperture;
 // ---
 var aperture:Aperture = new Aperture();
