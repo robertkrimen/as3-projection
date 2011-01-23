@@ -4,6 +4,8 @@
     xmlns:s="library://ns.adobe.com/flex/spark" 
     xmlns:mx="library://ns.adobe.com/flex/mx"
     creationComplete="creationComplete()"
+    width="680"
+    height="520"
     >
 
     <mx:VBox>
@@ -16,7 +18,5 @@
     </mx:VBox>
 
     <fx:Script source="examplei.as"/>
-
-    <!--http://www.qtcentre.org/wiki/index.php?title=QGraphicsView:_Smooth_Panning_and_Zooming#The_example-->
 
 </s:Application>
