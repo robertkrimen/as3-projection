@@ -4,8 +4,8 @@
     xmlns:s="library://ns.adobe.com/flex/spark" 
     xmlns:mx="library://ns.adobe.com/flex/mx"
     creationComplete="creationComplete()"
-    width="680"
-    height="520"
+    width="640"
+    height="512"
     >
 
     <mx:VBox>
